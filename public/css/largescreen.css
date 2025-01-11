@@ -1,0 +1,134 @@
+@media only screen and (min-width: 851px){
+    body{
+        padding: 0 15rem;
+        margin: 4px;
+        font-family: 'Arial', sans-serif;
+        width: 60%;
+        background: url("/images/site/small_check.jpg");
+        background-size: 100%;
+        z-index: -1;
+    }
+    header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: navy;
+        height: 3rem;
+        font-size: large;
+        padding: 0 1rem;
+        
+        a{  
+            text-decoration: none;
+            color: white;
+            text-align: center;
+        }
+
+    }
+
+    nav{
+        display: flex;
+        background-color: rgb(60, 65, 66);
+
+        ul{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 100%;
+            list-style: none;
+            color: white;
+            text-transform: capitalize;
+        }
+    }
+
+    .welcomenote{
+        margin: 2rem auto;
+        z-index: 1000;
+        position: relative;
+    }
+
+    .herosection{
+        margin: auto;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        padding: 0 10rem;
+        height: 60vh;
+        z-index: 0;
+    }
+
+    .herosection-overlay{
+        background-image: url('/images/vehicles/delorean-tn.jpg');
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 4%;
+        left: 22rem;
+        width: 50%;
+        height: 60%;
+        z-index: 1;
+    }
+
+    
+.herocontent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #dad7d7c1;
+    height: 15rem;
+    width: 12rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    z-index: 1000;
+    position: relative;
+    
+    ul li{
+      list-style: none;
+      padding: 0;
+    }
+  
+    button{
+      background-color:rgb(60, 65, 66);
+      outline: none;
+      border: none;
+      border-radius: 2%;
+      color: white;
+      font-weight: bold;
+      padding: .6rem;
+      width: 90%;
+    }
+  }
+
+  .large{
+    display: flex;
+    flex-direction: row-reverse;
+
+    .class-upgrade{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .upgrade-parts{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+    }
+
+    figure img{
+        height: 5rem;
+        background-color: gray;
+        width: auto;
+        padding: 1rem;
+    }
+  }
+
+  #wrapper{
+    background-color: rgb(254, 253, 253);
+  }
+
+}
