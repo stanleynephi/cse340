@@ -10,6 +10,7 @@ header{
   height: 4rem;
   background-color: navy;
   color: white;
+
   a{
     text-decoration: none;
     font-weight: bold;
@@ -27,8 +28,13 @@ nav ul{
   text-transform: capitalize;
   list-style: none;
   background-color: rgb(60, 65, 66);
-  color: white;
-  height: 2.5rem;;
+  height: 2.5rem;
+
+  a{
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+  }
 }
 
 .welcomenote{
@@ -130,12 +136,34 @@ figure img{
   height: 100px;
   padding: 1rem;
 }
-}
+
 
 figcaption{
   font-size: 1.5rem;
   font-weight: bold;
   color: black;
+}
+
+#inv-display{
+  display: grid;
+  grid-template-rows: repeat(auto-fit, minmax(200px,1fr));
+  gap: 16px;
+  padding: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+#inv-display li  {
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+  list-style: none;
+  height: 300px;
+  width: 300px;
+  border: 2px solid navy;
+}
 }
 
 footer{
