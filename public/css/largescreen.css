@@ -165,4 +165,16 @@
     background-color: gray;
     border: 1px solid black;
   }
+
+  .car-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 2rem;
+  }
+
+  .car-details img{
+    width: 300px;
+  }
 }

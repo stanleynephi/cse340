@@ -8,7 +8,6 @@ const Util = {}
  ************************** */
 Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications()
-  console.log(data)
   let list = "<ul>"
   list += '<li><a href="/" title="Home page">Home</a></li>'
 
@@ -64,5 +63,37 @@ Util.buildClassificationGrid = async function (data) {
   }
   return grid
 }
+
+/**This block of code takes the data sent from the database about the car and then
+ * wraps it up in an HTML element ready for the view
+ */
+Util.buildCarDetails = async function (data){
+    if (!data || data.length === 0) {
+      return '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+    }
+
+    const car = data[0]
+    
+    return `
+    <div class="car-details">
+      <img src="${car.inv_image}" alt="Image of ${car.inv_make} ${car.inv_model}" />
+      <div class="details">
+      <p><strong>Price:</strong> $${car.inv_price.toLocaleString()}</p>
+      <p><strong>Year:</strong> ${car.inv_year}</p>
+      <p><strong>Color:</strong> ${car.inv_color}</p>
+      <p><strong>Milage:</strong> ${car.inv_miles}ml</p>
+      <p><strong>Description:</strong> ${car.inv_description}</p>
+      </div>
+    </div>
+  `;
+}
+
+
+/* ****************************************
+ * Middleware For Handling Errors
+ * Wrap other function in this for 
+ * General Error Handling
+ **************************************** */
+Util.handleErrors = fn => (req,res,next) => Promise.resolve(fn(req,res,next)).catch(next)
 
 module.exports = Util

@@ -34,4 +34,20 @@ async function getClassifications() {
   }
 }
 
-module.exports = {getClassifications, getClassificationsbyID }
+
+//function to query the database for infomation about a single car
+async function getCarDetails(inv_id) {
+  try{
+    console.log("query with inv_id", inv_id)
+    const data =  await pool.query(
+      `SELECT * FROM public.inventory WHERE inv_id = $1`, 
+      [inv_id])
+    return data.rows
+  }
+
+  catch (error){
+    console.error("There is an error in the code" + error)
+  }
+}
+
+module.exports = {getClassifications, getClassificationsbyID, getCarDetails}

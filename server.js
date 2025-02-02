@@ -13,6 +13,7 @@ const static = require("./routes/static")
 const baseController = require("./Contoller/baseController")
 //require the inventoryRoute.js just built
 const inventoryRoute = require("./routes/inventoryRoute")
+const Util = require("./utilities")
 
 
 /* ***********************
@@ -32,11 +33,36 @@ app.use(static)
 
 
 //Index Route
-app.get("/", baseController.buildHome)
+app.get("/",Util.handleErrors( baseController.buildHome))
 
 //inventory routes app.use directes the express application to use the resource provided as parameter.
 // /inv being used suggest that any file starting with inv will  be directed to the inventory.js file
 app.use("/inv", inventoryRoute)
+
+//add a 404 route to handle any unknown routes
+app.use(async(req,res,next) => {
+  next({status: 404, message: "Sorry we dont know what you are looking for...🤷‍♂️🤷‍♀️"})
+})
+
+
+
+
+/** We use the express built in error handlers to 
+ * handle errors in the code and also that from the promise recieved from 
+ * our database.
+ * Placed abouve all middlewear
+ */
+app.use(async (err,req,res,next) => {
+  let nav = await Util.getNav()
+  console.error(`Error at: "${req.originalUrl}" : ${err.message}`)
+  if(err.status == 404){ message = err.message} else { message = "Well guess what?  The Server is broken Sorry !" }
+  res.render("errors/errors", {
+    title:err.status || "Server Error",
+    message: err.message,
+    nav
+  })
+})
+
 
 
 /* ***********************
