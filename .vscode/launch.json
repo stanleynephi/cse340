@@ -5,11 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node-terminal",
-            "name": "Run Script: start",
-            "request": "launch",
-            "command": "pnpm run start",
-            "cwd": "${workspaceFolder}"
+           "name" : "Launch CSE Motors",
+           "program" : "${workspaceFolder}/server.js",
+           "request" : "launch",
+           "skipFiles": [
+            "<node_internals>/**"
+           ],
+           "type": "node"
         }
     ]
 }
