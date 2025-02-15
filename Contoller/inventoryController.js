@@ -45,6 +45,43 @@ invCont.buildInventoryByCarDetails = async function (req, res, next ){
 }
 
 
+/** Build the management view controller */
+invCont.buildManagementlinks = async function (req, res, next ){
+    try{
+        let nav = await utility.getNav()
+        const links = await utility.ManagementLink()
+
+        res.render("./inventory/management", {
+            title: "Management",
+            nav,
+            links,
+        })
+    }
+
+    catch(error){
+        console.log("There is an error building the management links")
+    }
+}
+
+
+invCont.buildaddClassificationView = async function() {
+    try{
+        let nav = await utility.getNav()
+        const forms = await utility.buildaddClassificationForms()
+        
+
+        res.render("./inventory/add-classification", {
+            title: "Add Classification",
+            nav,
+            forms,
+        })
+    }
+
+    catch(error){
+        console.log("There is an error building the add classification view")
+    }
+}
+
 
 
 //export the model

@@ -1,0 +1,9 @@
+<!-- webpage for the management view  using ejs tags-->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } 
+%>
+
+<%- links %>

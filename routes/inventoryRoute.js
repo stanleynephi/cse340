@@ -11,8 +11,10 @@ const invntoryController = require("../Contoller/inventoryController")
 
 
 //build the route to build the inventory by classification view
-router.get('/type/:classificationId', Util.handleErrors(invntoryController.buildInventoryByClassification))
-router.get("/detail/:inv_Id",Util.handleErrors(invntoryController.buildInventoryByCarDetails))
+router.get('/type/:classificationId',invntoryController.buildInventoryByClassification)
+router.get("/detail/:inv_Id",invntoryController.buildInventoryByCarDetails)
+router.get("/management", invntoryController.buildManagementlinks)
+router.get("/add-classification",invntoryController.buildaddClassificationView)
 
 //export the router instance
 module.exports = router

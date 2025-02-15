@@ -14,6 +14,10 @@ const baseController = require("./Contoller/baseController")
 //require the inventoryRoute.js just built
 const inventoryRoute = require("./routes/inventoryRoute")
 const Util = require("./utilities")
+const Session = require ("express-session")
+const pool = require ("./database/")
+const account = require("./routes/accountRoute")
+const bodyparser = require("body-parser")
 
 
 /* ***********************
@@ -22,6 +26,46 @@ const Util = require("./utilities")
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout")
+
+
+
+
+/* This line of code is used to connect to the database for the
+    session flash message.
+    this code connects to the postgress db
+    which creates a table in the db
+  *Middleware
+ */
+app.use(Session({
+  store: new (require ("connect-pg-simple") (Session)) (
+    {
+      createTableIfMissing: true,
+      pool,
+    }
+  ),
+  secret: process.env.Session_Secret,
+  resave: true,
+  saveUninitialized: true,
+  name: "sessionId",
+}))
+
+
+
+/** Express Messages Middleware 
+ *  This middleware sends flash messages to the view.
+ * 
+ * this function call the connect-flash and also the
+ * express-message 
+*/
+app.use(require ("connect-flash") ())
+app.use( function (req,res,next) {
+  res.locals.messages = require ("express-messages") (req,res)
+  next()
+})
+
+
+app.use(bodyparser.json())
+app.use(bodyparser.urlencoded({extended:true}))
 
 
 
@@ -38,6 +82,12 @@ app.get("/",Util.handleErrors( baseController.buildHome))
 //inventory routes app.use directes the express application to use the resource provided as parameter.
 // /inv being used suggest that any file starting with inv will  be directed to the inventory.js file
 app.use("/inv", inventoryRoute)
+
+//add the account route
+app.use("/account", account)
+
+//add a route for the management view
+
 
 //add a 404 route to handle any unknown routes
 app.use(async(req,res,next) => {

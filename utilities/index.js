@@ -1,6 +1,7 @@
 //utilities to build the needed components that will be used multiple times over and over again.
 
 const invModel = require("../models/inventory-model")
+// const { link } = require("../routes/inventoryRoute")
 const Util = {}
 
 /* ************************
@@ -86,6 +87,97 @@ Util.buildCarDetails = async function (data){
       </div>
     </div>
   `;
+}
+
+
+
+/**
+ * Build a form alyout for the login
+ */
+Util.buildLoginForm = async function(){
+  return `
+      <form class= "login_forms">
+        <fieldset>
+          <label>
+            Email
+            <input type="mail" name="email" placeholder="Email" id="account_email"/>
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" placeholder="Password" id="account_password"/>
+          </label>
+        </fieldset>
+        <fieldset>
+          <input type="submit" name="submit" placeholder="Submit details"
+        </fieldset>
+      </form>
+      <div class="signup_link">
+        <a href="./register"> Sign Up</a>
+      </div>
+  `
+}
+
+Util.buildRegisterForms = async function(){
+  return   `
+  <form class= "login_forms" method="post" action="/account/register">
+    <fieldset>
+      <label>
+        First Name
+        <input type="text" name="account_firstname" placeholder="First Name" id="account_firstname"/>
+      </label>
+       <label>
+        Last Name
+        <input type="text" name="account_lastname" placeholder="Last Name" id="account_lastname"/>
+      </label>
+    </fieldset>
+    <fieldset>
+      <label>
+        Email
+        <input type="mail" name="account_email" placeholder="Email" id="account_email"/>
+      </label>
+      <label>
+        Password
+        <input type="password" name="account_password" placeholder="Password" id="account_password"/>
+      </label>
+    </fieldset>
+    <fieldset>
+      <input type="submit" name="submit" placeholder="Submit details"
+    </fieldset>
+  </form>
+  <div class="signup_link">
+    <a href="./login"> Sign In</a>
+  </div>
+`
+}
+
+Util.buildaddClassificationForms =async function(){
+  const forms = `
+  <span class="classification_noditce">Form Instructions</span>
+    <form class= "add_classification" method="post">
+      <fieldset>
+        <label>
+          Classification Name
+          <input tpye="text" name="classification_name" placeholder="classification_name"/>
+        </label>
+      </fieldset>
+    </form>
+    <div class="submit_form">
+      <a  href="#"> Submit Form </a>
+    </div>
+  `
+
+  return forms
+}
+
+
+Util.ManagementLink = async function(){
+  const links = `
+    <div class="managementlinks">
+        <a href="./add-classification"> Add New Classification</a>
+        <a href="#"> Add New Inventory </a>
+    </div>
+  `
+  return links
 }
 
 
