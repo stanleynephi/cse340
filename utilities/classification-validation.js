@@ -9,7 +9,7 @@ const validate = {}
 
 
 /**Validate the data sent from the classification forms */
-validate.AddClassification = () => {
+validate.AddClassificationRules = () => {
 
     return [
         body("classification_name")
@@ -19,6 +19,7 @@ validate.AddClassification = () => {
 }
 
 
+/**Check if the data is okay to be passed into the database per the rules given */
 validate.CheckAddClassificationData = async (req,res,next) => {
     const { classification_name} = req.body
     let errors = []
@@ -26,10 +27,11 @@ validate.CheckAddClassificationData = async (req,res,next) => {
     if(!errors.isEmpty()){
         let nav = await utilities.getNav()
         let buildclassificationForm = await utilities.buildaddClassificationForms()
-        res.render("",{
+        res.render("add-classification",{
             errors,
             nav,
-            buildclassificationForm
+            buildclassificationForm,
+            classification_name,
         })
 
         return

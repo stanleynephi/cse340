@@ -64,12 +64,12 @@ invCont.buildManagementlinks = async function (req, res, next ){
 }
 
 
-invCont.buildaddClassificationView = async function() {
+
+/**Deliver add to classification view */
+invCont.addtoClassificationView = async function(req,res,next) {
     try{
         let nav = await utility.getNav()
-        const forms = await utility.buildaddClassificationForms()
-        
-
+        const forms = await utility.addClassificationForms()
         res.render("./inventory/add-classification", {
             title: "Add Classification",
             nav,
@@ -78,7 +78,51 @@ invCont.buildaddClassificationView = async function() {
     }
 
     catch(error){
-        console.log("There is an error building the add classification view")
+        console.log("There is an error building the add classification view" + error)
+    }
+}
+
+//classification registration process
+invCont.registerClassification = async function (req,res){
+    try{
+        let nav = await utility.getNav()
+        let forms = await utility.addClassificationForms()
+        const {classification_name} = req.body
+
+        const regResult = await invModel.addNewClassification(
+            classification_name
+        )
+
+        if(regResult){
+            req.flash(
+                "success",
+                "Classification has been added successfully"
+            )
+
+            res.status(201).render ("inventory/add-classification", {
+                title: "Add Classification",
+                nav,
+                forms,
+            })
+        }
+
+        else{
+            req.flash(
+                "error",
+                "Classification has not been added"
+            )
+            res.status(501).render(
+                "inventory/add-classification",{
+                    title: "Add Classification",
+                    nav,
+                    forms
+                }
+            )
+        }
+    }
+
+    catch(error){
+        console.log("There is an error registering the classification" + error)
     }
 }
 

@@ -86,9 +86,6 @@ app.use("/inv", inventoryRoute)
 //add the account route
 app.use("/account", account)
 
-//add a route for the management view
-
-
 //add a 404 route to handle any unknown routes
 app.use(async(req,res,next) => {
   next({status: 404, message: "Sorry we dont know what you are looking for...🤷‍♂️🤷‍♀️"})

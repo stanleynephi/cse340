@@ -50,4 +50,19 @@ async function getCarDetails(inv_id) {
   }
 }
 
-module.exports = {getClassifications, getClassificationsbyID, getCarDetails}
+
+async function addNewClassification(classification_name) {
+  try{
+    const sql = "insert into classification (classification_name) values ($1) RETURNING *"
+    const data =  await pool.query(sql, [classification_name])
+    return data
+    
+  }
+
+  catch(error){
+    console.log("Data Was Not Entered Successfully" + error.message)
+  }
+  
+}
+
+module.exports = {getClassifications, getClassificationsbyID, getCarDetails,addNewClassification}

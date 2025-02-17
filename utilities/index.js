@@ -141,7 +141,7 @@ Util.buildRegisterForms = async function(){
       </label>
     </fieldset>
     <fieldset>
-      <input type="submit" name="submit" placeholder="Submit details"
+      <input type="submit" name="submit" placeholder="Submit details"/>
     </fieldset>
   </form>
   <div class="signup_link">
@@ -150,23 +150,21 @@ Util.buildRegisterForms = async function(){
 `
 }
 
-Util.buildaddClassificationForms =async function(){
-  const forms = `
+Util.addClassificationForms =async function(){
+  return `
   <span class="classification_noditce">Form Instructions</span>
-    <form class= "add_classification" method="post">
+    <form class= "add_classification" method="post" action="./add-classification">
       <fieldset>
         <label>
           Classification Name
           <input tpye="text" name="classification_name" placeholder="classification_name"/>
         </label>
       </fieldset>
+      <fieldset>
+        <input type="submit" name="submit" placeholder="Submit Details"/>
+      </fieldset>
     </form>
-    <div class="submit_form">
-      <a  href="#"> Submit Form </a>
-    </div>
   `
-
-  return forms
 }
 
 
